@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Priyansh Jain — Applied AI Practitioner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#07090b;
+  --bg2:#0c1016;
+  --card:#0f1820;
+  --card-h:#141f2c;
+  --neon:#00ff88;
+  --neon-mid:#00cc6a;
+  --neon-dim:#008844;
+  --neon-faint:rgba(0,255,136,0.07);
+  --neon-glow:0 0 12px rgba(0,255,136,0.3),0 0 28px rgba(0,255,136,0.12);
+  --neon-text:0 0 12px rgba(0,255,136,0.55);
+  --white:#dde8f0;
+  --gray:#7a90a8;
+  --muted:#2e3d4f;
+  --border:rgba(0,255,136,0.14);
+  --border-faint:rgba(255,255,255,0.05);
+  --fd:'Space Grotesk',sans-serif;
+  --fb:'Inter',sans-serif;
+  --fm:'JetBrains Mono',monospace;
+  --rad:8px;
+  --radlg:14px;
+  --t:0.24s ease;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  background-image:radial-gradient(rgba(0,255,136,0.035) 1px,transparent 1px);
+  background-size:28px 28px;
+  color:var(--white);
+  font-family:var(--fb);
+  font-size:15px;
+  line-height:1.7;
+  overflow-x:hidden;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:62px;padding:0 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(7,9,11,0.88);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{
+  font-family:var(--fm);font-size:17px;font-weight:700;
+  color:var(--neon);text-shadow:var(--neon-text);
+  text-decoration:none;letter-spacing:0.06em;
+}
+.nav-links{display:flex;gap:30px;list-style:none}
+.nav-links a{
+  font-family:var(--fm);font-size:11px;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--gray);text-decoration:none;
+  transition:color var(--t);
+}
+.nav-links a:hover,.nav-links a.active{color:var(--neon)}
+.nav-hire{
+  font-family:var(--fm);font-size:11px;letter-spacing:0.08em;
+  padding:8px 20px;border:1px solid var(--neon);color:var(--neon);
+  border-radius:4px;text-decoration:none;transition:all var(--t);
+}
+.nav-hire:hover{background:var(--neon-faint);box-shadow:var(--neon-glow)}
+
+/* ── HERO ── */
+#hero{
+  position:relative;min-height:100vh;
+  display:flex;align-items:center;
+  padding:110px 80px 70px;overflow:hidden;
+}
+#hero-canvas{position:absolute;inset:0;width:100%;height:100%;opacity:0.45}
+.hero-wrap{position:relative;z-index:2;max-width:780px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:var(--fm);font-size:11px;color:var(--neon);
+  border:1px solid var(--border);padding:6px 16px;
+  border-radius:20px;margin-bottom:28px;
+  background:var(--neon-faint);letter-spacing:0.07em;
+}
+.hero-badge::before{
+  content:'';width:7px;height:7px;
+  background:var(--neon);border-radius:50%;
+  box-shadow:0 0 7px var(--neon);
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.35}}
+.hero-name{
+  font-family:var(--fd);
+  font-size:clamp(54px,7.5vw,88px);
+  font-weight:700;line-height:1.03;
+  letter-spacing:-0.025em;color:var(--white);
+  margin-bottom:10px;
+}
+.hero-name em{
+  font-style:normal;color:var(--neon);
+  text-shadow:var(--neon-text);
+}
+.hero-role{
+  font-family:var(--fm);font-size:clamp(13px,1.8vw,17px);
+  color:var(--gray);margin-bottom:30px;letter-spacing:0.04em;
+}
+.hero-role span{color:var(--neon-mid)}
+.hero-term{
+  background:rgba(0,0,0,0.55);border:1px solid var(--border);
+  border-radius:var(--rad);padding:18px 22px;
+  margin-bottom:34px;font-family:var(--fm);
+  font-size:13px;max-width:540px;
+}
+.term-bar{
+  display:flex;align-items:center;gap:7px;
+  margin-bottom:12px;padding-bottom:10px;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+.dot{width:10px;height:10px;border-radius:50%}
+.dr{background:#ff5f57}.dy{background:#ffbd2e}.dg{background:#28c940}
+.term-prompt{color:var(--neon)}
+.term-out{color:var(--white)}
+.cursor{
+  display:inline-block;width:2px;height:13px;
+  background:var(--neon);margin-left:2px;
+  vertical-align:middle;animation:blink 1s infinite;
+}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:46px}
+.btn-pri{
+  font-family:var(--fm);font-size:12px;font-weight:700;
+  padding:13px 28px;background:var(--neon);
+  color:#07090b;border:none;border-radius:4px;
+  text-decoration:none;letter-spacing:0.06em;
+  transition:all var(--t);cursor:pointer;
+}
+.btn-pri:hover{box-shadow:var(--neon-glow);transform:translateY(-1px)}
+.btn-sec{
+  font-family:var(--fm);font-size:12px;padding:13px 28px;
+  background:transparent;color:var(--neon);
+  border:1px solid var(--border);border-radius:4px;
+  text-decoration:none;letter-spacing:0.06em;
+  transition:all var(--t);
+}
+.btn-sec:hover{border-color:var(--neon);background:var(--neon-faint)}
+.hero-stats{display:flex;gap:44px;flex-wrap:wrap}
+.stat-num{
+  font-family:var(--fd);font-size:28px;font-weight:700;
+  color:var(--neon);text-shadow:var(--neon-text);
+  line-height:1;display:block;
+}
+.stat-lbl{
+  font-family:var(--fm);font-size:10px;color:var(--muted);
+  letter-spacing:0.12em;text-transform:uppercase;margin-top:5px;display:block;
+}
+
+/* ── SECTION SHARED ── */
+section{padding:96px 80px}
+.eyebrow{
+  font-family:var(--fm);font-size:11px;
+  color:var(--neon);letter-spacing:0.16em;
+  text-transform:uppercase;margin-bottom:10px;
+}
+.sec-title{
+  font-family:var(--fd);
+  font-size:clamp(28px,4vw,44px);
+  font-weight:700;color:var(--white);
+  line-height:1.12;margin-bottom:14px;
+}
+.sec-sub{color:var(--gray);font-size:16px;max-width:540px;margin-bottom:56px}
+.divider{
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--border),transparent);
+  margin:0 80px;
+}
+
+/* ── STACK ── */
+#stack{background:var(--bg2)}
+.stack-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(310px,1fr));
+  gap:18px;
+}
+.sc{
+  background:var(--card);border:1px solid var(--border-faint);
+  border-radius:var(--radlg);padding:26px 28px;
+  transition:all var(--t);position:relative;overflow:hidden;
+}
+.sc::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--neon),transparent);
+  opacity:0;transition:opacity var(--t);
+}
+.sc:hover{
+  border-color:var(--border);background:var(--card-h);
+  transform:translateY(-3px);
+  box-shadow:0 8px 30px rgba(0,255,136,0.07);
+}
+.sc:hover::before{opacity:1}
+.sc-icon{font-size:22px;margin-bottom:12px;display:block}
+.sc-cat{
+  font-family:var(--fm);font-size:9px;color:var(--neon);
+  letter-spacing:0.16em;text-transform:uppercase;margin-bottom:5px;
+}
+.sc-title{
+  font-family:var(--fd);font-size:16px;font-weight:600;
+  color:var(--white);margin-bottom:9px;
+}
+.sc-desc{font-size:12.5px;color:var(--gray);line-height:1.65;margin-bottom:14px}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{
+  font-family:var(--fm);font-size:10px;padding:3px 9px;
+  border-radius:3px;border:1px solid rgba(0,255,136,0.18);
+  color:var(--neon-mid);background:rgba(0,255,136,0.04);
+  letter-spacing:0.03em;
+}
+
+/* ── PROJECTS ── */
+#projects{background:var(--bg)}
+.proj-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(330px,1fr));
+  gap:20px;
+}
+.pc{
+  background:var(--card);border:1px solid var(--border-faint);
+  border-radius:var(--radlg);padding:28px;
+  display:flex;flex-direction:column;gap:12px;
+  transition:all var(--t);
+}
+.pc:hover{
+  border-color:var(--border);transform:translateY(-3px);
+  box-shadow:0 8px 28px rgba(0,255,136,0.06);
+}
+.pc-num{
+  font-family:var(--fm);font-size:10px;
+  color:var(--neon);letter-spacing:0.1em;
+}
+.pc-title{
+  font-family:var(--fd);font-size:17px;font-weight:600;color:var(--white);
+}
+.pc-desc{font-size:12.5px;color:var(--gray);line-height:1.65;flex:1}
+.ptags{display:flex;flex-wrap:wrap;gap:5px}
+.ptag{
+  font-family:var(--fm);font-size:10px;padding:3px 9px;
+  border-radius:3px;background:rgba(0,255,136,0.05);
+  color:var(--neon-mid);border:1px solid rgba(0,255,136,0.14);
+}
+
+/* ── EXPERIENCE ── */
+#experience{background:var(--bg2)}
+.timeline{position:relative;max-width:820px}
+.timeline::before{
+  content:'';position:absolute;left:17px;top:6px;bottom:0;
+  width:1px;
+  background:linear-gradient(to bottom,var(--neon),rgba(0,255,136,0.1));
+  opacity:0.28;
+}
+.ti{position:relative;padding:0 0 52px 58px}
+.ti-dot{
+  position:absolute;left:8px;top:6px;
+  width:20px;height:20px;border-radius:50%;
+  background:var(--bg2);border:2px solid var(--neon);
+  box-shadow:0 0 12px rgba(0,255,136,0.45);
+}
+.ti-meta{
+  font-family:var(--fm);font-size:10.5px;
+  color:var(--neon);letter-spacing:0.1em;margin-bottom:7px;
+}
+.ti-role{
+  font-family:var(--fd);font-size:19px;font-weight:600;
+  color:var(--white);margin-bottom:3px;
+}
+.ti-co{font-size:13px;color:var(--gray);margin-bottom:12px}
+.ti-bul{list-style:none;display:flex;flex-direction:column;gap:6px}
+.ti-bul li{
+  font-size:12.5px;color:var(--gray);
+  padding-left:16px;position:relative;line-height:1.65;
+}
+.ti-bul li::before{
+  content:'▸';position:absolute;left:0;
+  color:var(--neon);font-size:9px;top:4px;
+}
+
+/* ── CERTS ── */
+#certifications{background:var(--bg)}
+.ce-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+.edu-sub{
+  font-family:var(--fm);font-size:11px;color:var(--neon);
+  letter-spacing:0.13em;text-transform:uppercase;margin-bottom:16px;
+}
+.edu-cards{display:flex;flex-direction:column;gap:14px}
+.edu-card{
+  background:var(--card);border:1px solid var(--border-faint);
+  border-radius:var(--rad);padding:20px 22px;
+}
+.edu-deg{
+  font-family:var(--fd);font-size:16px;font-weight:600;
+  color:var(--white);margin-bottom:4px;
+}
+.edu-school{font-size:12.5px;color:var(--gray);margin-bottom:7px}
+.edu-meta{font-family:var(--fm);font-size:11px;color:var(--neon-mid)}
+.cert-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cert-badge{
+  background:var(--card);border:1px solid var(--border-faint);
+  border-radius:var(--rad);padding:14px 15px;
+  transition:all var(--t);
+}
+.cert-badge:hover{border-color:var(--border);background:var(--card-h)}
+.cert-iss{
+  font-family:var(--fm);font-size:9px;color:var(--neon);
+  letter-spacing:0.14em;text-transform:uppercase;margin-bottom:5px;
+}
+.cert-name{font-size:12px;color:var(--white);font-weight:500;line-height:1.45}
+
+/* ── SKILLS BAR ── */
+#skills-bar{background:var(--bg2);padding:48px 80px}
+.skills-inner{
+  display:flex;flex-wrap:wrap;gap:10px;
+  align-items:center;
+}
+.skills-label{
+  font-family:var(--fm);font-size:11px;
+  color:var(--neon);letter-spacing:0.12em;
+  text-transform:uppercase;margin-right:6px;
+  white-space:nowrap;
+}
+.skill-pill{
+  font-family:var(--fm);font-size:11px;
+  padding:5px 13px;border-radius:20px;
+  border:1px solid rgba(0,255,136,0.2);
+  color:var(--gray);background:var(--neon-faint);
+  letter-spacing:0.03em;white-space:nowrap;
+  transition:all var(--t);
+}
+.skill-pill:hover{color:var(--neon);border-color:var(--neon)}
+
+/* ── CONTACT ── */
+#contact{background:var(--bg2);text-align:center}
+.contact-inner{max-width:580px;margin:0 auto}
+.contact-avail{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:var(--fm);font-size:11px;color:var(--neon);
+  margin-bottom:36px;letter-spacing:0.06em;
+}
+.contact-avail::before{
+  content:'';width:8px;height:8px;background:var(--neon);
+  border-radius:50%;animation:pulse 2s infinite;
+}
+.contact-title{
+  font-family:var(--fd);
+  font-size:clamp(32px,5.5vw,56px);
+  font-weight:700;color:var(--white);
+  margin-bottom:14px;line-height:1.08;
+}
+.contact-title em{font-style:normal;color:var(--neon);text-shadow:var(--neon-text)}
+.contact-sub{color:var(--gray);margin-bottom:44px;font-size:16px}
+.contact-methods{
+  display:flex;justify-content:center;gap:18px;
+  flex-wrap:wrap;margin-bottom:40px;
+}
+.cmethod{
+  display:flex;align-items:center;gap:12px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--rad);padding:16px 22px;
+  text-decoration:none;transition:all var(--t);
+}
+.cmethod:hover{
+  background:var(--card-h);
+  box-shadow:var(--neon-glow);transform:translateY(-2px);
+}
+.cicon{font-size:20px}
+.ctext{display:flex;flex-direction:column;text-align:left}
+.clabel{
+  font-family:var(--fm);font-size:9px;color:var(--neon);
+  letter-spacing:0.12em;text-transform:uppercase;
+}
+.cval{font-size:14px;color:var(--white);font-weight:500;margin-top:2px}
+.cloc{
+  font-family:var(--fm);font-size:12px;color:var(--muted);
+  letter-spacing:0.06em;margin-bottom:32px;
+}
+.lang-row{
+  display:flex;justify-content:center;gap:20px;flex-wrap:wrap;
+}
+.lang-pill{
+  font-family:var(--fm);font-size:11px;
+  padding:5px 14px;border-radius:20px;
+  border:1px solid var(--border-faint);
+  color:var(--gray);letter-spacing:0.04em;
+}
+
+/* ── FOOTER ── */
+footer{
+  padding:22px 80px;
+  border-top:1px solid var(--border-faint);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.foot-copy{font-family:var(--fm);font-size:11px;color:var(--muted)}
+.foot-links{display:flex;gap:22px}
+.foot-links a{
+  font-family:var(--fm);font-size:11px;
+  color:var(--muted);text-decoration:none;
+  transition:color var(--t);
+}
+.foot-links a:hover{color:var(--neon)}
+
+/* ── REVEAL ANIMATION ── */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  section,#skills-bar{padding:70px 32px}
+  #hero{padding:110px 32px 60px}
+  .divider{margin:0 32px}
+  nav{padding:0 24px}
+  .nav-links{display:none}
+  .ce-grid{grid-template-columns:1fr;gap:40px}
+  footer{padding:22px 32px;flex-direction:column;gap:12px;text-align:center}
+}
+@media(max-width:600px){
+  section,#skills-bar{padding:56px 20px}
+  #hero{padding:100px 20px 50px}
+  .hero-stats{gap:24px}
+  .contact-methods{flex-direction:column;align-items:center}
+  .cert-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="#hero" class="nav-logo">PJ_</a>
+  <ul class="nav-links">
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#certifications">Credentials</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:jpriyansh1212@gmail.com" class="nav-hire">Hire Me</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-wrap">
+    <div class="hero-badge">Available for AI Roles · Global Remote</div>
+    <h1 class="hero-name">Priyansh<br><em>Jain</em></h1>
+    <p class="hero-role">Applied AI Practitioner &nbsp;·&nbsp; <span>Operations Professional</span></p>
+    <div class="hero-term">
+      <div class="term-bar">
+        <div class="dot dr"></div>
+        <div class="dot dy"></div>
+        <div class="dot dg"></div>
+      </div>
+      <span class="term-prompt">~/priyansh $&nbsp;</span><span class="term-out" id="tw"></span><span class="cursor"></span>
+    </div>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-pri">Get in Touch</a>
+      <a href="#projects" class="btn-sec">View Projects →</a>
+    </div>
+    <div class="hero-stats">
+      <div><span class="stat-num">10+</span><span class="stat-lbl">Years Ops</span></div>
+      <div><span class="stat-num">25+</span><span class="stat-lbl">AI Tools</span></div>
+      <div><span class="stat-num">3</span><span class="stat-lbl">Domains</span></div>
+      <div><span class="stat-num">∞</span><span class="stat-lbl">Build Ready</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS BAR ── -->
+<div id="skills-bar">
+  <div class="skills-inner">
+    <span class="skills-label">Core Skills —</span>
+    <span class="skill-pill">Operations Management</span>
+    <span class="skill-pill">AI Workflow Automation</span>
+    <span class="skill-pill">Agentic AI</span>
+    <span class="skill-pill">Data Analytics</span>
+    <span class="skill-pill">Process Optimization</span>
+    <span class="skill-pill">Algorithmic Trading</span>
+    <span class="skill-pill">Team Leadership</span>
+    <span class="skill-pill">SaaS Development</span>
+    <span class="skill-pill">Backend Integration</span>
+    <span class="skill-pill">Prompt Engineering</span>
+    <span class="skill-pill">Content Engineering</span>
+    <span class="skill-pill">HSE Compliance</span>
+  </div>
+</div>
+
+<!-- ── AI STACK ── -->
+<div class="divider"></div>
+<section id="stack">
+  <p class="eyebrow">// AI Capabilities</p>
+  <h2 class="sec-title">Full-Stack AI Toolkit</h2>
+  <p class="sec-sub">From autonomous agents to production backends — a working toolkit built through real builds, not just certifications.</p>
+  <div class="stack-grid">
+
+    <div class="sc reveal">
+      <span class="sc-icon">🤖</span>
+      <p class="sc-cat">Agentic AI</p>
+      <h3 class="sc-title">AI Agents & Chatbots</h3>
+      <p class="sc-desc">Designed and deployed autonomous AI agents and goal-driven chatbots for task automation, workflow orchestration, and customer interaction pipelines.</p>
+      <div class="tags">
+        <span class="tag">n8n Agents</span>
+        <span class="tag">Ollama</span>
+        <span class="tag">OpenClaw</span>
+        <span class="tag">Neuron Workflows</span>
+        <span class="tag">LLM Orchestration</span>
+        <span class="tag">Multi-Agent Systems</span>
+      </div>
+    </div>
+
+    <div class="sc reveal">
+      <span class="sc-icon">⚡</span>
+      <p class="sc-cat">Workflow Automation</p>
+      <h3 class="sc-title">End-to-End Automation Pipelines</h3>
+      <p class="sc-desc">Engineered privacy-first pipelines on self-hosted Docker infrastructure. Built production tools: Question Paper Generator, Document Summarizer, Trading Strategy Planner.</p>
+      <div class="tags">
+        <span class="tag">n8n (Docker)</span>
+        <span class="tag">Google Flow</span>
+        <span class="tag">WSL2 / Ubuntu</span>
+        <span class="tag">Webhook Integration</span>
+        <span class="tag">Trigger Chains</span>
+      </div>
+    </div>
+
+    <div class="sc reveal">
+      <span class="sc-icon">🌐</span>
+      <p class="sc-cat">Web & SaaS Development</p>
+      <h3 class="sc-title">AI-Native SaaS Building</h3>
+      <p class="sc-desc">Shipped web applications and SaaS prototypes using modern AI-native dev tools — from design through deployment without traditional boilerplate constraints.</p>
+      <div class="tags">
+        <span class="tag">Lovable</span>
+        <span class="tag">Codex</span>
+        <span class="tag">Emergent</span>
+        <span class="tag">Antigravity</span>
+        <span class="tag">HTML / CSS / JS</span>
+        <span class="tag">Vibe Coding</span>
+      </div>
+    </div>
+
+    <div class="sc reveal">
+      <span class="sc-icon">🗄️</span>
+      <p class="sc-cat">Backend & Databases</p>
+      <h3 class="sc-title">Backend Integrations</h3>
+      <p class="sc-desc">Connected AI-powered web apps to cloud database backends — schema design, auth flows, row-level security, real-time subscriptions, and REST API endpoints.</p>
+      <div class="tags">
+        <span class="tag">Supabase</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">Auth / RLS</span>
+        <span class="tag">Real-time Sync</span>
+        <span class="tag">REST APIs</span>
+      </div>
+    </div>
+
+    <div class="sc reveal">
+      <span class="sc-icon">🔌</span>
+      <p class="sc-cat">APIs & MCPs</p>
+      <h3 class="sc-title">API & MCP Integrations</h3>
+      <p class="sc-desc">Integrated third-party AI APIs and built MCP-compatible tool connections across major cloud and AI platforms for production agentic pipelines.</p>
+      <div class="tags">
+        <span class="tag">Google Cloud</span>
+        <span class="tag">Google Analytics</span>
+        <span class="tag">Grok API</span>
+        <span class="tag">MCP Protocol</span>
+        <span class="tag">OpenAI API</span>
+        <span class="tag">Gemini API</span>
+      </div>
+    </div>
+
+    <div class="sc reveal">
+      <span class="sc-icon">🧠</span>
+      <p class="sc-cat">LLM Ecosystem</p>
+      <h3 class="sc-title">Multi-LLM Tool Engineering</h3>
+      <p class="sc-desc">Built production workflows across major LLM platforms — custom prompt engineering, tool configurations, and fine-tuned agent behavior per model's strengths.</p>
+      <div class="tags">
+        <span class="tag">GPT-4 / o-series</span>
+        <span class="tag">Gemini</span>
+        <span class="tag">Claude</span>
+        <span class="tag">Grok</span>
+        <span class="tag">Ollama (Local)</span>
+        <span class="tag">Prompt Engineering</span>
+      </div>
+    </div>
+
+    <div class="sc reveal">
+      <span class="sc-icon">📊</span>
+      <p class="sc-cat">Algorithmic Trading</p>
+      <h3 class="sc-title">Algo Trading Systems</h3>
+      <p class="sc-desc">Developed, backtested, and deployed custom algorithmic trading strategies for XAU/USD and BTC/USD. Authored a 15-module course on Trading Psychology and Risk Management.</p>
+      <div class="tags">
+        <span class="tag">Pine Script v6</span>
+        <span class="tag">MetaTrader 5</span>
+        <span class="tag">TradingView</span>
+        <span class="tag">XAU/USD</span>
+        <span class="tag">BTC/USD</span>
+        <span class="tag">Backtesting</span>
+      </div>
+    </div>
+
+    <div class="sc reveal">
+      <span class="sc-icon">🕷️</span>
+      <p class="sc-cat">Data Scraping</p>
+      <h3 class="sc-title">E-Commerce Data Extraction</h3>
+      <p class="sc-desc">Built scrapers targeting Indian e-commerce platforms to extract trending product listings. Converted raw data into structured JSON and styled HTML product galleries for market analysis.</p>
+      <div class="tags">
+        <span class="tag">Meesho</span>
+        <span class="tag">Web Scraping</span>
+        <span class="tag">Data Pipelines</span>
+        <span class="tag">HTML Galleries</span>
+        <span class="tag">Python</span>
+        <span class="tag">JSON / CSV</span>
+      </div>
+    </div>
+
+    <div class="sc reveal">
+      <span class="sc-icon">🎬</span>
+      <p class="sc-cat">Content & Video Gen AI</p>
+      <h3 class="sc-title">AI-Driven Content Production</h3>
+      <p class="sc-desc">Scaled technical content production using AI video generation tools. Managed full-cycle YouTube brand development with advanced video SEO and content engineering strategies.</p>
+      <div class="tags">
+        <span class="tag">AI Video Gen</span>
+        <span class="tag">Gen AI Tools</span>
+        <span class="tag">YouTube SEO</span>
+        <span class="tag">Script Automation</span>
+        <span class="tag">Content Engineering</span>
+      </div>
+    </div>
+
+    <div class="sc reveal">
+      <span class="sc-icon">📈</span>
+      <p class="sc-cat">Data Analytics</p>
+      <h3 class="sc-title">Analytics, Reporting & Dashboards</h3>
+      <p class="sc-desc">Applied Deloitte and IIT Bombay analytics frameworks to real operational and trading contexts — KPI dashboards, signal accuracy analysis, and decision-support reporting.</p>
+      <div class="tags">
+        <span class="tag">Tableau</span>
+        <span class="tag">Python (Pandas)</span>
+        <span class="tag">Excel / Sheets</span>
+        <span class="tag">KPI Dashboards</span>
+        <span class="tag">Deloitte Framework</span>
+        <span class="tag">Kaggle</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── PROJECTS ── -->
+<div class="divider"></div>
+<section id="projects">
+  <p class="eyebrow">// Built & Shipped</p>
+  <h2 class="sec-title">Projects & Tools</h2>
+  <p class="sec-sub">Real systems built across automation, trading, web, and data — not demo projects.</p>
+  <div class="proj-grid">
+
+    <div class="pc reveal">
+      <span class="pc-num">01 · Automation</span>
+      <h3 class="pc-title">Privacy-First AI Automation Stack</h3>
+      <p class="pc-desc">Migrated cloud-based workflows to a fully self-hosted n8n Docker environment running on WSL2/Ubuntu. Integrated Ollama for local LLM inference and OpenClaw for agentic task execution — zero data leaves the machine.</p>
+      <div class="ptags">
+        <span class="ptag">n8n Docker</span>
+        <span class="ptag">Ollama</span>
+        <span class="ptag">OpenClaw</span>
+        <span class="ptag">WSL2 / Ubuntu</span>
+      </div>
+    </div>
+
+    <div class="pc reveal">
+      <span class="pc-num">02 · Agentic AI</span>
+      <h3 class="pc-title">AI Tool Suite on Neuron Workflows</h3>
+      <p class="pc-desc">Built four production agentic tools entirely within the Neuron Workflows platform: a Question Paper Generator, Document Summarizer, Trading Strategy Planner, and a MQL5/PineScript Code Generator.</p>
+      <div class="ptags">
+        <span class="ptag">Neuron Workflows</span>
+        <span class="ptag">LLM Agents</span>
+        <span class="ptag">Agentic AI</span>
+        <span class="ptag">PineScript</span>
+      </div>
+    </div>
+
+    <div class="pc reveal">
+      <span class="pc-num">03 · Algo Trading</span>
+      <h3 class="pc-title">XAUUSD London-NY Gold Scalper</h3>
+      <p class="pc-desc">Developed and debugged a Pine Script v6 algorithmic scalping strategy for the 1-minute XAUUSD chart targeting the London-NY session overlap. Features session filters, pullback logic, and a debug arrow system.</p>
+      <div class="ptags">
+        <span class="ptag">Pine Script v6</span>
+        <span class="ptag">TradingView</span>
+        <span class="ptag">XAUUSD</span>
+        <span class="ptag">MT5</span>
+      </div>
+    </div>
+
+    <div class="pc reveal">
+      <span class="pc-num">04 · Open Source</span>
+      <h3 class="pc-title">Forex Trading Textbook (GitHub)</h3>
+      <p class="pc-desc">Authored and published an open-source 15-module trading resource covering Forex fundamentals, Trading Psychology, Risk Management, and custom algorithmic strategy design. Publicly accessible on GitHub.</p>
+      <div class="ptags">
+        <span class="ptag">GitHub</span>
+        <span class="ptag">Open Source</span>
+        <span class="ptag">Forex / Crypto</span>
+        <span class="ptag">Risk Management</span>
+      </div>
+    </div>
+
+    <div class="pc reveal">
+      <span class="pc-num">05 · Web / SaaS</span>
+      <h3 class="pc-title">SaaS Prototypes — AI Dev Stack</h3>
+      <p class="pc-desc">Shipped multiple SaaS-style web applications using AI-native development platforms — from concept to deployed prototype, bypassing traditional scaffolding. Backends connected to Supabase + PostgreSQL.</p>
+      <div class="ptags">
+        <span class="ptag">Lovable</span>
+        <span class="ptag">Codex</span>
+        <span class="ptag">Emergent</span>
+        <span class="ptag">Antigravity</span>
+        <span class="ptag">Supabase</span>
+      </div>
+    </div>
+
+    <div class="pc reveal">
+      <span class="pc-num">06 · Data Scraping</span>
+      <h3 class="pc-title">E-Commerce Product Data Scraper</h3>
+      <p class="pc-desc">Built a data extraction pipeline targeting Meesho and Indian shopping platforms to capture trending product listings. Raw data converted into structured datasets and styled HTML product galleries for analysis.</p>
+      <div class="ptags">
+        <span class="ptag">Python</span>
+        <span class="ptag">Meesho</span>
+        <span class="ptag">Web Scraping</span>
+        <span class="ptag">HTML Gallery</span>
+      </div>
+    </div>
+
+    <div class="pc reveal">
+      <span class="pc-num">07 · Backend</span>
+      <h3 class="pc-title">Supabase + PostgreSQL App Backends</h3>
+      <p class="pc-desc">Designed and deployed cloud database backends for AI web apps — including schema design, auth flows, row-level security (RLS), real-time subscriptions, and REST API endpoints via Google Cloud.</p>
+      <div class="ptags">
+        <span class="ptag">Supabase</span>
+        <span class="ptag">PostgreSQL</span>
+        <span class="ptag">Google Cloud</span>
+        <span class="ptag">Auth / RLS</span>
+        <span class="ptag">Real-time</span>
+      </div>
+    </div>
+
+    <div class="pc reveal">
+      <span class="pc-num">08 · Data Science</span>
+      <h3 class="pc-title">Data Science Portfolio (Kaggle)</h3>
+      <p class="pc-desc">Actively building a structured data science portfolio using Kaggle datasets — progressing through beginner to intermediate projects covering EDA, data visualisation, and predictive modelling foundations.</p>
+      <div class="ptags">
+        <span class="ptag">Kaggle</span>
+        <span class="ptag">Python</span>
+        <span class="ptag">EDA</span>
+        <span class="ptag">Data Viz</span>
+        <span class="ptag">ML Basics</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── EXPERIENCE ── -->
+<div class="divider"></div>
+<section id="experience">
+  <p class="eyebrow">// Operational History</p>
+  <h2 class="sec-title">Experience</h2>
+  <p class="sec-sub">10+ years spanning petroleum field operations, educational administration, and applied AI practice.</p>
+  <div class="timeline">
+
+    <div class="ti reveal">
+      <div class="ti-dot"></div>
+      <p class="ti-meta">2025 – 2026 &nbsp;·&nbsp; Remote</p>
+      <h3 class="ti-role">AI Operations & Automation Lead</h3>
+      <p class="ti-co">Independent · Self-Directed Upskilling</p>
+      <ul class="ti-bul">
+        <li>Engineered privacy-first AI pipelines on self-hosted n8n Docker with Ollama and OpenClaw on WSL2/Ubuntu</li>
+        <li>Deployed 4 production agentic tools on Neuron Workflows: Question Paper Generator, Document Summarizer, Trading Strategy Planner, Code Generator</li>
+        <li>Developed and backtested XAU/USD & BTC/USD algo strategies in Pine Script v6 and MetaTrader 5</li>
+        <li>Authored an open-source 15-module trading course covering Psychology, Risk Management, and algo design</li>
+        <li>Built e-commerce scrapers, SaaS prototypes (Lovable, Codex, Emergent, Antigravity), and Supabase-backed web apps</li>
+        <li>Integrated APIs across Google Cloud, Grok, Gemini, and Claude MCP for agentic pipeline tooling</li>
+      </ul>
+    </div>
+
+    <div class="ti reveal">
+      <div class="ti-dot"></div>
+      <p class="ti-meta">May 2023 – Apr 2025 &nbsp;·&nbsp; Dubai, UAE</p>
+      <h3 class="ti-role">Operations Executive</h3>
+      <p class="ti-co">Petrochem Global International FZE</p>
+      <ul class="ti-bul">
+        <li>Led end-to-end strategic overhaul of field operations with measurable efficiency improvements and full HSE compliance</li>
+        <li>Conducted economic analyses to benchmark performance and inform procurement and resource allocation decisions</li>
+        <li>Diagnosed and resolved critical operational bottlenecks through root-cause analysis, minimising downtime and risk</li>
+        <li>Coordinated cross-functional stakeholders to maintain SOPs and regulatory compliance across all field activities</li>
+      </ul>
+    </div>
+
+    <div class="ti reveal">
+      <div class="ti-dot"></div>
+      <p class="ti-meta">May 2022 – May 2024 &nbsp;·&nbsp; Surat, India</p>
+      <h3 class="ti-role">Head of Operations & Administration</h3>
+      <p class="ti-co">Excellent Brains Academy</p>
+      <ul class="ti-bul">
+        <li>Oversaw end-to-end academy operations: staff scheduling, resource planning, vendor coordination, and facility management</li>
+        <li>Managed student enrolment workflows, fee collection, and performance tracking databases with high accuracy</li>
+        <li>Developed and implemented SOPs that standardised workflows across administrative, academic, and support functions</li>
+        <li>Handled budgetary oversight for operational expenditures, balancing cost control with quality service delivery</li>
+      </ul>
+    </div>
+
+    <div class="ti reveal">
+      <div class="ti-dot"></div>
+      <p class="ti-meta">Apr 2022 – Mar 2023 &nbsp;·&nbsp; Surat, India</p>
+      <h3 class="ti-role">Coordinator & Departmental Operations Lead</h3>
+      <p class="ti-co">Noble Public School</p>
+      <ul class="ti-bul">
+        <li>Coordinated curriculum planning and timetable logistics for multiple grade levels across concurrent programmes</li>
+        <li>Maintained accurate documentation of student performance, attendance, and academic records</li>
+        <li>Tracked departmental KPIs and prepared progress summaries for senior management review</li>
+      </ul>
+    </div>
+
+    <div class="ti reveal">
+      <div class="ti-dot"></div>
+      <p class="ti-meta">Apr 2015 – Sep 2016 &nbsp;·&nbsp; Surat, India</p>
+      <h3 class="ti-role">Administrative & Operations Executive</h3>
+      <p class="ti-co">DL GTPL Cabnet Pvt. Ltd.</p>
+      <ul class="ti-bul">
+        <li>Managed back-office operations including documentation, record-keeping, and administrative workflows</li>
+        <li>Oversaw customer care operations, handling escalations and ensuring SLA compliance consistently</li>
+        <li>Maintained accounting records and supported financial reporting with high levels of accuracy</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── CREDENTIALS ── -->
+<div class="divider"></div>
+<section id="certifications">
+  <p class="eyebrow">// Credentials</p>
+  <h2 class="sec-title">Education & Certifications</h2>
+  <p class="sec-sub">Engineering foundation, teaching credentials, and a targeted suite of AI, data, and analytics certifications.</p>
+  <div class="ce-grid">
+
+    <div>
+      <p class="edu-sub">Education</p>
+      <div class="edu-cards">
+        <div class="edu-card reveal">
+          <p class="edu-deg">Bachelor of Education (B.Ed)</p>
+          <p class="edu-school">Mathematics & Science</p>
+          <p class="edu-meta">2024 &nbsp;·&nbsp; CGPA 8.62</p>
+        </div>
+        <div class="edu-card reveal">
+          <p class="edu-deg">Bachelor of Engineering (B.E.)</p>
+          <p class="edu-school">Electrical Engineering</p>
+          <p class="edu-meta">2021 &nbsp;·&nbsp; First Class &nbsp;·&nbsp; CGPA 6.77</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p class="edu-sub">Certifications</p>
+      <div class="cert-grid">
+        <div class="cert-badge reveal">
+          <p class="cert-iss">Anthropic</p>
+          <p class="cert-name">AI Fluency & Claude 101</p>
+        </div>
+        <div class="cert-badge reveal">
+          <p class="cert-iss">Anthropic</p>
+          <p class="cert-name">Claude Cowork · Teaching AI Fluency</p>
+        </div>
+        <div class="cert-badge reveal">
+          <p class="cert-iss">Anthropic</p>
+          <p class="cert-name">AI Fluency for Educators</p>
+        </div>
+        <div class="cert-badge reveal">
+          <p class="cert-iss">Deloitte</p>
+          <p class="cert-name">Data Analytics Certification</p>
+        </div>
+        <div class="cert-badge reveal">
+          <p class="cert-iss">Coding Ninjas × IIT Bombay</p>
+          <p class="cert-name">Data Analysis Masterclass</p>
+        </div>
+        <div class="cert-badge reveal">
+          <p class="cert-iss">OUTSKILL</p>
+          <p class="cert-name">GenAI Mastermind</p>
+        </div>
+        <div class="cert-badge reveal">
+          <p class="cert-iss">Google</p>
+          <p class="cert-name">Digital Marketing Fundamentals</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<div class="divider"></div>
+<section id="contact">
+  <div class="contact-inner">
+    <span class="contact-avail">Open to AI Roles · Worldwide Remote</span>
+    <h2 class="contact-title">Let's Build<br><em>Something.</em></h2>
+    <p class="contact-sub">I bring operational discipline to AI chaos. If you're building in automation, agentic systems, or AI-adjacent products - I'd like to talk.</p>
+    <div class="contact-methods">
+      <a href="mailto:jpriyansh1212@gmail.com" class="cmethod">
+        <span class="cicon">✉️</span>
+        <div class="ctext">
+          <span class="clabel">Email</span>
+          <span class="cval">jpriyansh1212@gmail.com</span>
+        </div>
+      </a>
+      <a href="tel:+918849247117" class="cmethod">
+        <span class="cicon">📱</span>
+        <div class="ctext">
+          <span class="clabel">Phone / WhatsApp</span>
+          <span class="cval">+91 88492 47117</span>
+        </div>
+      </a>
+    </div>
+    <p class="cloc">📍 Surat, India &nbsp;·&nbsp; Mumbai, India &nbsp;·&nbsp; Dubai &nbsp;·&nbsp; Global Remote & Relocation</p>
+    <div class="lang-row">
+      <span class="lang-pill">English - Professional</span>
+      <span class="lang-pill">Hindi - Fluent</span>
+      <span class="lang-pill">Gujarati - Native</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <span class="foot-copy">© 2026 Priyansh Jain · Applied AI Practitioner</span>
+  <div class="foot-links">
+    <a href="mailto:jpriyansh1212@gmail.com">Email</a>
+    <a href="tel:+918849247117">WhatsApp</a>
+    <a href="#hero">Back to Top ↑</a>
+  </div>
+</footer>
+
+<script>
+/* ── NEURAL NETWORK CANVAS ── */
+const cv=document.getElementById('hero-canvas');
+const cx=cv.getContext('2d');
+let W,H,nodes=[];
+
+function resize(){
+  W=cv.width=cv.offsetWidth;
+  H=cv.height=cv.offsetHeight;
+}
+
+function makeNodes(){
+  nodes=[];
+  const n=Math.floor((W*H)/13000);
+  for(let i=0;i<n;i++){
+    nodes.push({
+      x:Math.random()*W,y:Math.random()*H,
+      vx:(Math.random()-0.5)*0.38,vy:(Math.random()-0.5)*0.38,
+      r:Math.random()*1.8+0.8
+    });
+  }
+}
+
+function frame(){
+  cx.clearRect(0,0,W,H);
+  for(let i=0;i<nodes.length;i++){
+    for(let j=i+1;j<nodes.length;j++){
+      const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y;
+      const d=Math.sqrt(dx*dx+dy*dy);
+      if(d<130){
+        cx.beginPath();
+        cx.moveTo(nodes[i].x,nodes[i].y);
+        cx.lineTo(nodes[j].x,nodes[j].y);
+        cx.strokeStyle=`rgba(0,255,136,${0.11*(1-d/130)})`;
+        cx.lineWidth=0.5;
+        cx.stroke();
+      }
+    }
+  }
+  for(const n of nodes){
+    cx.beginPath();
+    cx.arc(n.x,n.y,n.r,0,Math.PI*2);
+    cx.fillStyle='rgba(0,255,136,0.5)';
+    cx.fill();
+    n.x+=n.vx; n.y+=n.vy;
+    if(n.x<0||n.x>W)n.vx*=-1;
+    if(n.y<0||n.y>H)n.vy*=-1;
+  }
+  requestAnimationFrame(frame);
+}
+
+window.addEventListener('resize',()=>{resize();makeNodes()});
+resize(); makeNodes(); frame();
+
+/* ── TYPEWRITER ── */
+const phrases=[
+  'automating_workflows --engine n8n + AI agents',
+  'building_saas --stack Lovable · Codex · Emergent',
+  'deploying_agents --local Ollama + Docker backend',
+  'scraping_ecommerce --source Meesho → galleries',
+  'trading_algo --pair XAUUSD · Pine Script v6',
+  'integrating_apis --Google Cloud · Grok · MCP',
+  'analysing_data --tools Kaggle · Deloitte · Tableau',
+  'backend_setup --db Supabase + PostgreSQL',
+  'generating_content --mode AI Video + Gen AI tools',
+  'building_tools --gpt GPT · Gemini · Claude · Grok',
+];
+let pi=0,ci=0,del=false;
+const el=document.getElementById('tw');
+
+function type(){
+  const cur=phrases[pi];
+  if(!del){
+    el.textContent=cur.substring(0,ci+1);
+    ci++;
+    if(ci===cur.length){del=true;setTimeout(type,2400);return}
+    setTimeout(type,42);
+  } else {
+    el.textContent=cur.substring(0,ci-1);
+    ci--;
+    if(ci===0){
+      del=false;
+      pi=(pi+1)%phrases.length;
+      setTimeout(type,380);
+      return;
+    }
+    setTimeout(type,20);
+  }
+}
+type();
+
+/* ── SCROLL REVEAL ── */
+const revs=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach((e,idx)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('visible'),idx*70);
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:0.07});
+revs.forEach(r=>obs.observe(r));
+
+/* ── SCROLL SPY ── */
+const secs=document.querySelectorAll('section[id]');
+const navAs=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{
+    if(window.scrollY>=s.offsetTop-90)cur=s.id;
+  });
+  navAs.forEach(a=>{
+    a.classList.toggle('active',a.getAttribute('href')==='#'+cur);
+  });
+},{passive:true});
+</script>
+</body>
+</html>
