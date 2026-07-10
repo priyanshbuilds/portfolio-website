@@ -242,6 +242,7 @@ section{padding:96px 80px}
   border-radius:var(--radlg);padding:28px;
   display:flex;flex-direction:column;gap:12px;
   transition:all var(--t);
+  cursor:pointer;
 }
 .pc:hover{
   border-color:var(--border);transform:translateY(-3px);
@@ -440,6 +441,59 @@ footer{
   .hero-stats{gap:24px}
   .contact-methods{flex-direction:column;align-items:center}
   .cert-grid{grid-template-columns:1fr}
+}
+
+/* ── PROJECT MODAL ── */
+.modal-overlay {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(7, 9, 11, 0.9); backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000; opacity: 0; pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.modal-overlay.active {
+  opacity: 1; pointer-events: auto;
+}
+.modal-content {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radlg); padding: 40px;
+  max-width: 600px; width: 90%; position: relative;
+  transform: scale(0.9); transition: transform 0.3s ease;
+  box-shadow: 0 10px 40px rgba(0,255,136,0.1);
+}
+.modal-overlay.active .modal-content {
+  transform: scale(1);
+}
+.modal-close {
+  position: absolute; top: 20px; right: 20px;
+  background: transparent; border: none; color: var(--gray);
+  font-size: 28px; cursor: pointer; transition: color var(--t);
+  display: flex; align-items: center; justify-content: center;
+}
+.modal-close:hover {
+  color: var(--neon);
+}
+.modal-num {
+  font-family: var(--fm); font-size: 11px;
+  color: var(--neon); letter-spacing: 0.1em; display: block; margin-bottom: 12px;
+}
+.modal-title {
+  font-family: var(--fd); font-size: 24px; font-weight: 700;
+  color: var(--white); margin-bottom: 20px; line-height: 1.2;
+}
+.modal-desc {
+  font-size: 14.5px; color: var(--gray); line-height: 1.7;
+  margin-bottom: 24px;
+}
+.modal-tags-title {
+  font-family: var(--fm); font-size: 11px; color: var(--white);
+  letter-spacing: 0.1em; margin-bottom: 12px; display: block; text-transform: uppercase;
+}
+.modal-tags {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.modal-tags .ptag {
+  font-size: 11.5px; padding: 5px 12px;
 }
 </style>
 </head>
@@ -954,6 +1008,18 @@ footer{
   </div>
 </footer>
 
+<!-- ── PROJECT MODAL ── -->
+<div class="modal-overlay" id="project-modal">
+  <div class="modal-content">
+    <button class="modal-close" id="modal-close">&times;</button>
+    <span class="modal-num" id="modal-num"></span>
+    <h3 class="modal-title" id="modal-title"></h3>
+    <p class="modal-desc" id="modal-desc"></p>
+    <span class="modal-tags-title">Tech Stack</span>
+    <div class="modal-tags" id="modal-tags"></div>
+  </div>
+</div>
+
 <script>
 /* ── NEURAL NETWORK CANVAS ── */
 const cv=document.getElementById('hero-canvas');
@@ -1069,6 +1135,39 @@ window.addEventListener('scroll',()=>{
     a.classList.toggle('active',a.getAttribute('href')==='#'+cur);
   });
 },{passive:true});
+
+/* ── PROJECT MODAL LOGIC ── */
+const pCards = document.querySelectorAll('.pc');
+const modalOverlay = document.getElementById('project-modal');
+const modalClose = document.getElementById('modal-close');
+const mNum = document.getElementById('modal-num');
+const mTitle = document.getElementById('modal-title');
+const mDesc = document.getElementById('modal-desc');
+const mTags = document.getElementById('modal-tags');
+
+pCards.forEach(card => {
+  card.addEventListener('click', () => {
+    mNum.textContent = card.querySelector('.pc-num').textContent;
+    mTitle.textContent = card.querySelector('.pc-title').textContent;
+    mDesc.textContent = card.querySelector('.pc-desc').textContent;
+    mTags.innerHTML = card.querySelector('.ptags').innerHTML;
+    modalOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+const closeModal = () => {
+  modalOverlay.classList.remove('active');
+  document.body.style.overflow = '';
+};
+
+modalClose.addEventListener('click', closeModal);
+modalOverlay.addEventListener('click', (e) => {
+  if(e.target === modalOverlay) closeModal();
+});
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape' && modalOverlay.classList.contains('active')) closeModal();
+});
 </script>
 </body>
 </html>
