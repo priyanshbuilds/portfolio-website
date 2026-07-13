@@ -116,10 +116,14 @@ nav{
   text-shadow:var(--neon-text);
 }
 .hero-role{
-  font-family:var(--fm);font-size:clamp(13px,1.8vw,17px);
-  color:var(--gray);margin-bottom:30px;letter-spacing:0.04em;
+  font-family:var(--fm);font-size:clamp(15px,2vw,19px);
+  color:var(--neon);margin-bottom:10px;letter-spacing:0.04em;font-weight:600;
 }
 .hero-role span{color:var(--neon-mid)}
+.hero-sub-role{
+  font-family:var(--fm);font-size:clamp(11px,1.4vw,13px);
+  color:var(--muted);margin-bottom:30px;letter-spacing:0.03em;
+}
 .hero-term{
   background:rgba(0,0,0,0.55);border:1px solid var(--border);
   border-radius:var(--rad);padding:18px 22px;
@@ -265,6 +269,34 @@ section{padding:96px 80px}
 
 /* ── EXPERIENCE ── */
 #experience{background:var(--bg2)}
+.prior-cta-row{
+  display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  margin:8px 0 40px 0;
+}
+.ops-cv-link{
+  font-family:var(--fm);font-size:11px;color:var(--muted);
+  text-decoration:none;letter-spacing:0.02em;
+  border-bottom:1px dashed var(--border);padding-bottom:1px;
+  transition:color var(--t),border-color var(--t);
+}
+.ops-cv-link:hover{color:var(--neon-mid);border-color:var(--neon-mid)}
+.prior-toggle{
+  display:flex;align-items:center;gap:10px;
+  background:transparent;border:1px solid var(--border);
+  border-radius:var(--rad);padding:14px 22px;margin:0;
+  font-family:var(--fm);font-size:12px;letter-spacing:0.04em;
+  color:var(--gray);cursor:pointer;transition:all var(--t);
+  max-width:fit-content;
+}
+.prior-toggle:hover{border-color:var(--neon);color:var(--neon);background:var(--neon-faint)}
+.prior-toggle-arrow{transition:transform var(--t);margin-left:auto}
+.prior-toggle[aria-expanded="true"] .prior-toggle-arrow{transform:rotate(180deg)}
+.prior-skills{display:flex;flex-wrap:wrap;gap:10px;padding:0 0 20px 58px}
+.prior-timeline{
+  max-height:0;overflow:hidden;opacity:0;
+  transition:max-height 0.5s ease,opacity 0.4s ease;
+}
+.prior-timeline.expanded{max-height:3000px;opacity:1}
 .timeline{position:relative;max-width:820px}
 .timeline::before{
   content:'';position:absolute;left:17px;top:6px;bottom:0;
@@ -300,11 +332,12 @@ section{padding:96px 80px}
 
 /* ── CERTS ── */
 #certifications{background:var(--bg)}
-.ce-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+.ce-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:60px}
 .edu-sub{
   font-family:var(--fm);font-size:11px;color:var(--neon);
   letter-spacing:0.13em;text-transform:uppercase;margin-bottom:16px;
 }
+.edu-sub-secondary{color:var(--muted)}
 .edu-cards{display:flex;flex-direction:column;gap:14px}
 .edu-card{
   background:var(--card);border:1px solid var(--border-faint);
@@ -519,7 +552,8 @@ footer{
   <div class="hero-wrap">
     <div class="hero-badge">Available for AI Roles · Global Remote</div>
     <h1 class="hero-name">Priyansh<br><em>Jain</em></h1>
-    <p class="hero-role">Applied AI Practitioner &nbsp;·&nbsp; <span>Operations Professional</span></p>
+    <p class="hero-role">Applied AI Practitioner</p>
+    <p class="hero-sub-role">Building automation &amp; agentic AI systems &nbsp;·&nbsp; 7+ yrs prior in Ops &amp; Education</p>
     <div class="hero-term">
       <div class="term-bar">
         <div class="dot dr"></div>
@@ -531,13 +565,12 @@ footer{
     <div class="hero-ctas">
       <a href="#contact" class="btn-pri">Get in Touch</a>
       <a href="#projects" class="btn-sec">View Projects →</a>
-      <a href="assets/Priyansh_CV_Remote.pdf" download class="btn-sec">📄 Remote CV</a>
-      <a href="assets/Priyansh_CV_Ops.pdf" download class="btn-sec">📄 Ops CV</a>
+      <a href="assets/Priyansh_CV_Remote.pdf" download class="btn-sec">📄 Download CV</a>
     </div>
     <div class="hero-stats">
-      <div><span class="stat-num">10+</span><span class="stat-lbl">Years Ops</span></div>
-      <div><span class="stat-num">20+</span><span class="stat-lbl">AI Tools</span></div>
-      <div><span class="stat-num">3</span><span class="stat-lbl">Domains</span></div>
+      <div><span class="stat-num">8</span><span class="stat-lbl">AI Projects Shipped</span></div>
+      <div><span class="stat-num">20+</span><span class="stat-lbl">Tools & Workflows</span></div>
+      <div><span class="stat-num">7+</span><span class="stat-lbl">Yrs Cross-Domain Exp</span></div>
       <div><span class="stat-num">∞</span><span class="stat-lbl">Build Ready</span></div>
     </div>
   </div>
@@ -547,18 +580,14 @@ footer{
 <div id="skills-bar">
   <div class="skills-inner">
     <span class="skills-label">Core Skills —</span>
-    <span class="skill-pill">Operations Management</span>
     <span class="skill-pill">AI Workflow Automation</span>
     <span class="skill-pill">Agentic AI</span>
-    <span class="skill-pill">Data Analytics</span>
-    <span class="skill-pill">Process Optimization</span>
-    <span class="skill-pill">Algorithmic Trading</span>
-    <span class="skill-pill">Team Leadership</span>
+    <span class="skill-pill">Prompt Engineering</span>
     <span class="skill-pill">SaaS Development</span>
     <span class="skill-pill">Backend Integration</span>
-    <span class="skill-pill">Prompt Engineering</span>
+    <span class="skill-pill">Algorithmic Trading</span>
+    <span class="skill-pill">Data Analytics</span>
     <span class="skill-pill">Content Engineering</span>
-    <span class="skill-pill">HSE Compliance</span>
   </div>
 </div>
 
@@ -833,9 +862,9 @@ footer{
 <!-- ── EXPERIENCE ── -->
 <div class="divider"></div>
 <section id="experience">
-  <p class="eyebrow">// Operational History</p>
+  <p class="eyebrow">// Current Focus</p>
   <h2 class="sec-title">Experience</h2>
-  <p class="sec-sub">10+ years spanning petroleum field operations, educational administration, and applied AI practice.</p>
+  <p class="sec-sub">Currently building in Applied AI &amp; Automation — following 7+ years across operations and education.</p>
   <div class="timeline">
 
     <div class="ti reveal">
@@ -852,6 +881,18 @@ footer{
         <li>Integrated APIs across Google Cloud, Grok, Gemini, and Claude MCP for agentic pipeline tooling</li>
       </ul>
     </div>
+
+  </div>
+
+  <div class="prior-cta-row">
+    <button id="prior-exp-toggle" class="prior-toggle" aria-expanded="false">
+      <span>Show Prior Experience — Operations &amp; Education (7+ yrs)</span>
+      <span class="prior-toggle-arrow">▾</span>
+    </button>
+    <a href="assets/Priyansh_CV_Ops.pdf" download class="ops-cv-link">Download my Ops CV here →</a>
+  </div>
+
+  <div class="timeline prior-timeline" id="prior-timeline">
 
     <div class="ti reveal">
       <div class="ti-dot"></div>
@@ -903,6 +944,13 @@ footer{
       </ul>
     </div>
 
+    <div class="prior-skills">
+      <span class="skill-pill">Process Optimization</span>
+      <span class="skill-pill">Operations Management</span>
+      <span class="skill-pill">Team Leadership</span>
+      <span class="skill-pill">HSE Compliance</span>
+    </div>
+
   </div>
 </section>
 
@@ -910,25 +958,9 @@ footer{
 <div class="divider"></div>
 <section id="certifications">
   <p class="eyebrow">// Credentials</p>
-  <h2 class="sec-title">Education & Certifications</h2>
-  <p class="sec-sub">Engineering foundation, teaching credentials, and a targeted suite of AI, data, and analytics certifications.</p>
+  <h2 class="sec-title">Certifications & Education</h2>
+  <p class="sec-sub">A targeted suite of AI, data, and analytics certifications - backed by an engineering and education foundation.</p>
   <div class="ce-grid">
-
-    <div>
-      <p class="edu-sub">Education</p>
-      <div class="edu-cards">
-        <div class="edu-card reveal">
-          <p class="edu-deg">Bachelor of Education (B.Ed)</p>
-          <p class="edu-school">Mathematics & Science</p>
-          <p class="edu-meta">2024 &nbsp;·&nbsp; CGPA 8.62</p>
-        </div>
-        <div class="edu-card reveal">
-          <p class="edu-deg">Bachelor of Engineering (B.E.)</p>
-          <p class="edu-school">Electrical Engineering</p>
-          <p class="edu-meta">2021 &nbsp;·&nbsp; First Class &nbsp;·&nbsp; CGPA 6.77</p>
-        </div>
-      </div>
-    </div>
 
     <div>
       <p class="edu-sub">Certifications</p>
@@ -960,6 +992,22 @@ footer{
         <div class="cert-badge reveal">
           <p class="cert-iss">Google</p>
           <p class="cert-name">Digital Marketing Fundamentals</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p class="edu-sub edu-sub-secondary">Education (Foundation)</p>
+      <div class="edu-cards">
+        <div class="edu-card reveal">
+          <p class="edu-deg">Bachelor of Engineering (B.E.)</p>
+          <p class="edu-school">Electrical Engineering</p>
+          <p class="edu-meta">2021 &nbsp;·&nbsp; First Class &nbsp;·&nbsp; CGPA 6.77</p>
+        </div>
+        <div class="edu-card reveal">
+          <p class="edu-deg">Bachelor of Education (B.Ed)</p>
+          <p class="edu-school">Mathematics & Science</p>
+          <p class="edu-meta">2024 &nbsp;·&nbsp; CGPA 8.62</p>
         </div>
       </div>
     </div>
@@ -1159,7 +1207,7 @@ const projectDetails = {
   },
   5: {
     detail: "A series of SaaS-style web application prototypes built using modern AI-native development platforms, Lovable, Codex, Emergent, and Antigravity, which allow moving from concept to functioning deployed prototype without traditional scaffolding or boilerplate setup. This includes ClearHead, an ADHD-focused brain-dump application built on Next.js 14 with Supabase for the backend, the Claude API for AI-assisted processing, and n8n for workflow automation behind the scenes. Each prototype was connected to a Supabase + PostgreSQL backend for persistent data storage, authentication, and real-time functionality, testing how far AI-native dev tools can compress the traditional idea-to-deployed-product timeline while still producing genuinely usable, backend-connected applications.",
-    tags: ["Lovable", "Codex", "Emergent", "Antigravity", "Next.js 14", "Supabase", "Claude API", "PostgreSQL", "Next.js 14", "AI-Native Dev Tools", "Rapid Prototyping"]
+    tags: ["Lovable", "Codex", "Emergent", "Antigravity", "Next.js 14", "Supabase", "Claude API", "PostgreSQL", "AI-Native Dev Tools", "Rapid Prototyping"]
   },
   6: {
     detail: "A Python-based data extraction pipeline built to scrape trending product listings from Meesho and other Indian e-commerce platforms, covering categories like shirts and men's trousers. Raw scraped data (pricing, product titles, images, ratings) was cleaned and converted into structured JSON/CSV datasets, which were then used to build responsive, styled HTML product gallery pages complete with filtering, sorting, and price-range sliders; turning raw scraped data into a browsable, presentation-ready storefront interface. This combines two distinct skill sets: data-engineering (scraping, cleaning, structuring unstructured web data at scale) and front-end delivery (building a genuinely usable browsing UI on top of that data).",
@@ -1174,6 +1222,20 @@ const projectDetails = {
     tags: ["Kaggle", "Python", "EDA", "Data Visualization", "Pandas", "Predictive Modeling Basics", "Deloitte Framework", "Structured Learning", "Jupyter Notebooks"]
   }
 };
+
+/* ── PRIOR EXPERIENCE TOGGLE ── */
+const priorToggle = document.getElementById('prior-exp-toggle');
+const priorTimeline = document.getElementById('prior-timeline');
+if (priorToggle && priorTimeline) {
+  priorToggle.addEventListener('click', () => {
+    const isExpanded = priorTimeline.classList.toggle('expanded');
+    priorToggle.setAttribute('aria-expanded', isExpanded);
+    priorToggle.querySelector('span').textContent = isExpanded
+      ? 'Hide Prior Experience'
+      : 'Show Prior Experience — Operations & Education (7+ yrs)';
+    gtag('event', 'prior_experience_toggle', { state: isExpanded ? 'expanded' : 'collapsed' });
+  });
+}
 
 /* ── PROJECT MODAL LOGIC ── */
 const pCards = document.querySelectorAll('.pc');
