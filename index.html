@@ -531,6 +531,8 @@ footer{
     <div class="hero-ctas">
       <a href="#contact" class="btn-pri">Get in Touch</a>
       <a href="#projects" class="btn-sec">View Projects →</a>
+      <a href="assets/Priyansh_CV_Remote.pdf" download class="btn-sec">📄 Remote CV</a>
+      <a href="assets/Priyansh_CV_Ops.pdf" download class="btn-sec">📄 Ops CV</a>
     </div>
     <div class="hero-stats">
       <div><span class="stat-num">10+</span><span class="stat-lbl">Years Ops</span></div>
@@ -1199,6 +1201,7 @@ pCards.forEach(card => {
     }
 
     modalOverlay.classList.add('active');
+    document.querySelector('.modal-content').scrollTop = 0;
     document.body.style.overflow = 'hidden';
 
     gtag('event', 'project_click', { project_name: title });
