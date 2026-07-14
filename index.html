@@ -234,6 +234,35 @@ section{padding:96px 80px}
   letter-spacing:0.03em;
 }
 
+/* ── LIVE DEMOS ── */
+#demos{background:var(--bg)}
+.demo-card{
+  background:var(--card);border:1px solid var(--border-faint);
+  border-radius:var(--radlg);padding:28px;
+  display:flex;flex-direction:column;gap:12px;
+  transition:all var(--t);
+  position: relative;
+}
+.demo-card:hover{
+  border-color:var(--border);transform:translateY(-3px);
+  box-shadow:0 8px 28px rgba(0,255,136,0.06);
+}
+.demo-status {
+  position: absolute; top: 28px; right: 28px;
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--fm); font-size: 10px; color: var(--white);
+  letter-spacing: 0.05em; text-transform: uppercase;
+}
+.demo-actions {
+  display: flex; gap: 10px; margin-top: auto; padding-top: 10px;
+}
+.demo-actions .btn-sec {
+  padding: 8px 16px; font-size: 12px;
+}
+.demo-actions .btn-sec.disabled {
+  opacity: 0.5; pointer-events: none;
+}
+
 /* ── PROJECTS ── */
 #projects{background:var(--bg)}
 .proj-grid{
@@ -538,6 +567,7 @@ footer{
   <a href="#hero" class="nav-logo">PJ_</a>
   <ul class="nav-links">
     <li><a href="#stack">Stack</a></li>
+    <li><a href="#demos">Live Demos</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#certifications">Credentials</a></li>
@@ -568,7 +598,7 @@ footer{
       <a href="assets/Priyansh_CV_Remote.pdf" download class="btn-sec">📄 Download CV</a>
     </div>
     <div class="hero-stats">
-      <div><span class="stat-num">8</span><span class="stat-lbl">AI Projects Shipped</span></div>
+      <div><span class="stat-num">4</span><span class="stat-lbl">Live Demos</span></div>
       <div><span class="stat-num">20+</span><span class="stat-lbl">Tools & Workflows</span></div>
       <div><span class="stat-num">7+</span><span class="stat-lbl">Yrs Cross-Domain Exp</span></div>
       <div><span class="stat-num">∞</span><span class="stat-lbl">Build Ready</span></div>
@@ -743,6 +773,85 @@ footer{
         <span class="tag">KPI Dashboards</span>
         <span class="tag">Deloitte Framework</span>
         <span class="tag">Kaggle</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── LIVE DEMOS ── -->
+<div class="divider"></div>
+<section id="demos">
+  <p class="eyebrow">// Try Them Live</p>
+  <h2 class="sec-title">Live Demos</h2>
+  <p class="sec-sub">Real, deployed tools — click through and use them yourself.</p>
+  <div class="proj-grid">
+
+    <div class="demo-card reveal">
+      <div class="demo-status">
+        <div class="dot dg"></div> Live
+      </div>
+      <h3 class="pc-title">humanizer-ai</h3>
+      <p class="pc-desc">An LLM-powered engine that rewrites AI-generated text into natural, human-sounding prose — preserving structure and meaning while stripping robotic patterns. Built on a four-stage prompt architecture: structure preservation, humanization principles, and a final quality check.</p>
+      <div class="ptags">
+        <span class="ptag">Python</span>
+        <span class="ptag">Render</span>
+        <span class="ptag">Prompt Engineering</span>
+      </div>
+      <div class="demo-actions">
+        <a href="https://humanizer-ai-3iz4.onrender.com/" target="_blank" class="btn-sec">Live Demo →</a>
+        <a href="https://github.com/priyanshbuilds/humanizer-ai" target="_blank" class="btn-sec">Code</a>
+      </div>
+    </div>
+
+    <div class="demo-card reveal">
+      <div class="demo-status">
+        <div class="dot dg"></div> Live
+      </div>
+      <h3 class="pc-title">prompt-engine-compiler</h3>
+      <p class="pc-desc">A systematic prompt engineering tool for compiling, testing, and iterating on prompts before they go into production — bringing engineering discipline to prompt design instead of trial-and-error.</p>
+      <div class="ptags">
+        <span class="ptag">JavaScript</span>
+        <span class="ptag">Render</span>
+        <span class="ptag">Prompt Engineering</span>
+      </div>
+      <div class="demo-actions">
+        <a href="https://prompt-engine-compiler.onrender.com" target="_blank" class="btn-sec">Live Demo →</a>
+        <a href="https://github.com/priyanshbuilds/prompt-engine-compiler" target="_blank" class="btn-sec">Code</a>
+      </div>
+    </div>
+
+    <div class="demo-card reveal">
+      <div class="demo-status">
+        <div class="dot dg"></div> Live
+      </div>
+      <h3 class="pc-title">ClearHead</h3>
+      <p class="pc-desc">A full-stack productivity app built with Next.js, Supabase, and the Claude API, helping users offload and organize their thoughts with AI assistance. Actively maintained with ongoing UI and feature refinements.</p>
+      <div class="ptags">
+        <span class="ptag">Next.js</span>
+        <span class="ptag">Supabase</span>
+        <span class="ptag">Vercel</span>
+        <span class="ptag">Claude API</span>
+      </div>
+      <div class="demo-actions">
+        <a href="https://clear-head-theta.vercel.app/" target="_blank" class="btn-sec">Live Demo →</a>
+        <a href="https://github.com/priyanshbuilds/ClearHead" target="_blank" class="btn-sec">Code</a>
+      </div>
+    </div>
+
+    <div class="demo-card reveal">
+      <div class="demo-status">
+        <div class="dot dy"></div> Deploying Soon
+      </div>
+      <h3 class="pc-title">clip-genius</h3>
+      <p class="pc-desc">An AI-powered clip/content tool — currently being redeployed with the latest updates.</p>
+      <div class="ptags">
+        <span class="ptag">TypeScript</span>
+        <span class="ptag">Vercel</span>
+      </div>
+      <div class="demo-actions">
+        <a class="btn-sec disabled">Live Demo →</a>
+        <a href="https://github.com/priyanshbuilds/clip-genius" target="_blank" class="btn-sec">Code</a>
       </div>
     </div>
 
