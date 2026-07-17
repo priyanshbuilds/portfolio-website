@@ -146,6 +146,66 @@ nav{
 }
 @keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
 .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:46px}
+.hero-ctas .btn-pri {
+  border-radius: 6px;
+  text-shadow: none;
+  background: var(--neon);
+  box-shadow: 
+    inset 0 2px 2px rgba(255, 255, 255, 0.4),
+    inset 0 -4px 4px rgba(0, 0, 0, 0.2),
+    0 8px 16px rgba(0, 255, 136, 0.2),
+    0 4px 6px rgba(0, 0, 0, 0.4);
+  transition: transform 0.1s, background 0.2s, box-shadow 0.2s;
+  border: none;
+}
+.hero-ctas .btn-pri:hover {
+  background: #33ff9f;
+  box-shadow: 
+    inset 0 2px 2px rgba(255, 255, 255, 0.5),
+    inset 0 -4px 4px rgba(0, 0, 0, 0.2),
+    0 12px 20px rgba(0, 255, 136, 0.4),
+    0 6px 8px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+.hero-ctas .btn-pri:active {
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 255, 136, 0.2);
+  transform: translateY(2px);
+}
+.hero-ctas .btn-sec {
+  border-radius: 6px;
+  text-shadow: none;
+  background: rgba(0, 255, 136, 0.08);
+  border: 1px solid rgba(0, 255, 136, 0.2);
+  box-shadow: 
+    inset 0 2px 2px rgba(255, 255, 255, 0.08),
+    inset 0 -4px 4px rgba(0, 0, 0, 0.4),
+    0 8px 16px rgba(0, 0, 0, 0.4),
+    0 4px 6px rgba(0, 0, 0, 0.5);
+  transition: transform 0.1s, background 0.2s, box-shadow 0.2s;
+}
+.hero-ctas .btn-sec:hover {
+  background: rgba(0, 255, 136, 0.3);
+  border-color: rgba(0, 255, 136, 0.5);
+  box-shadow: 
+    inset 0 2px 2px rgba(255, 255, 255, 0.15),
+    inset 0 -4px 4px rgba(0, 0, 0, 0.4),
+    0 12px 20px rgba(0, 255, 136, 0.2),
+    0 6px 8px rgba(0, 0, 0, 0.6);
+  transform: translateY(-2px);
+}
+.hero-ctas .btn-sec:active {
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.4);
+  transform: translateY(2px);
+}
+.bolt-flash {
+  filter: drop-shadow(0px 3px 4px rgba(0,0,0,0.6)) drop-shadow(0px 1px 1px rgba(0,0,0,0.5));
+  transform: rotate(5deg);
+  transition: transform 0.2s, filter 0.2s;
+}
+.hero-ctas .btn-sec:hover .bolt-flash {
+  filter: drop-shadow(0px 4px 8px rgba(255,183,0,0.5)) drop-shadow(0px 1px 2px rgba(255,183,0,0.6));
+  transform: rotate(15deg) scale(1.15);
+}
 .btn-pri{
   font-family:var(--fm);font-size:12px;font-weight:700;
   padding:13px 28px;background:var(--neon);
@@ -493,7 +553,11 @@ footer{
   #hero{padding:110px 32px 60px}
   .divider{margin:0 32px}
   nav{padding:0 24px}
-  .nav-links{display:none}
+  .nav-links{
+    display:flex; overflow-x:auto; white-space:nowrap; gap:16px; margin:0 15px; scrollbar-width:none;
+  }
+  .nav-links::-webkit-scrollbar{display:none;}
+  .nav-links li{flex-shrink:0;}
   .ce-grid{grid-template-columns:1fr;gap:40px}
   footer{padding:22px 32px;flex-direction:column;gap:12px;text-align:center}
 }
@@ -594,6 +658,24 @@ footer{
     </div>
     <div class="hero-ctas">
       <a href="#contact" class="btn-pri">Get in Touch</a>
+      <a href="#demos" class="btn-sec" style="display:inline-flex; align-items:center; gap:8px;">
+        <svg class="bolt-flash" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="-2 -2 28 28">
+          <defs>
+            <linearGradient id="flashGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fff566" />
+              <stop offset="40%" stop-color="#ffb700" />
+              <stop offset="100%" stop-color="#cc3300" />
+            </linearGradient>
+          </defs>
+          <!-- Light bevel (shifted top-left) -->
+          <polygon points="15,-1 8,8 13,8 6,16 11,16 5,23 15,14 10,14 17,6 12,6" fill="#ffffff" />
+          <!-- Dark bevel (shifted bottom-right) -->
+          <polygon points="17,1 10,10 15,10 8,18 13,18 7,25 17,16 12,16 19,8 14,8" fill="#4d1300" />
+          <!-- Main Body -->
+          <polygon points="16,0 9,9 14,9 7,17 12,17 6,24 16,15 11,15 18,7 13,7" fill="url(#flashGrad)" stroke="#ffea00" stroke-width="0.5" />
+        </svg>
+        Live Demos
+      </a>
       <a href="#projects" class="btn-sec">View Projects →</a>
       <a href="assets/Priyansh_CV_Remote.pdf" download class="btn-sec">📄 Download CV</a>
     </div>
